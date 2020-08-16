@@ -26,6 +26,7 @@ function love.load()
 	o.w = 15
 	o.h = 15
 	next_update = 0
+	frame_size = 25
 	green_box_frame = -1
 	score = 0
 	direction = {}
@@ -81,14 +82,14 @@ function love.update(dt)
 	else
 		o.x = o.x + direction.x * direction.xn
 		o.y = o.y + direction.y * direction.yn
-		if o.x+o.w > VH-25 then
+		if o.x+o.w > VH-frame_size then
 			direction.xn = -1
-		elseif o.x < 25 then
+		elseif o.x < frame_size then
 			direction.xn = 1
 		end
-		if o.y+o.h > VH-25 then
+		if o.y+o.h > VH-frame_size then
 			direction.yn = -1
-		elseif o.y < 25 then
+		elseif o.y < frame_size then
 			direction.yn = 1
 		end
 		if direction.last_changed < frames-60 then
@@ -110,7 +111,7 @@ function love.draw()
 	love.graphics.rectangle('fill', 0, 0, VW, VH)
 
 	love.graphics.setColor(0, 0, 0)
-	love.graphics.rectangle('fill', 25, 25, VW-50, VH-50)
+	love.graphics.rectangle('fill', frame_size, frame_size, VW-50, VH-50)
 
 	if green_box_frame ~= -1 and green_box_frame > frames-120 then
 		love.graphics.setColor(0, 128, 0)
