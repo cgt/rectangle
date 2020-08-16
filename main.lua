@@ -49,6 +49,13 @@ function love.mousepressed(x, y)
 	if distx < o.w and disty < o.h then
 		green_box_frame = frames
 		score = score + 1
+		which = math.random(0, 1)
+		if which == 1 then
+			direction.x = math.random(4, 8)
+		else
+			direction.y = math.random(4, 8)
+		end
+		direction.last_changed = frames
 	end
 end
 
@@ -64,13 +71,6 @@ function love.update(dt)
 	elseif tooClose and frames == next_update then
 		tooClose = false
 		next_update = false
-		which = math.random(0, 1)
-		if which == 1 then
-			direction.x = math.random(4, 8)
-		else
-			direction.y = math.random(4, 8)
-		end
-		direction.last_changed = frames
 	else
 		o.x = o.x + direction.x * direction.xn
 		o.y = o.y + direction.y * direction.yn
