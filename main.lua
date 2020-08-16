@@ -122,7 +122,7 @@ function love.draw()
 	end
 	love.graphics.rectangle('fill', o.x, o.y, o.w, o.h)
 
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(0, 0, 0)
 	love.graphics.setFont(score_font)
 	love.graphics.print(score)
 
