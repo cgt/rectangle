@@ -111,7 +111,7 @@ function love.draw()
 	love.graphics.rectangle('fill', 0, 0, VW, VH)
 
 	love.graphics.setColor(0, 0, 0)
-	love.graphics.rectangle('fill', frame_size, frame_size, VW-50, VH-50)
+	love.graphics.rectangle('fill', frame_size, frame_size, VW-frame_size*2, VH-frame_size*2)
 
 	if green_box_frame ~= -1 and green_box_frame > frames-120 then
 		love.graphics.setColor(0, 128, 0)
