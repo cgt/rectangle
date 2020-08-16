@@ -92,7 +92,7 @@ function love.update(dt)
 			direction.yn = 1
 		end
 		if direction.last_changed < frames-60 then
-			which = math.random(0, 1)
+			which = math.random(0, 1000)
 			if which == 1 then
 				direction.x = math.random(2)
 			else
