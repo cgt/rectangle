@@ -81,12 +81,12 @@ function love.update(dt)
 	else
 		o.x = o.x + direction.x * direction.xn
 		o.y = o.y + direction.y * direction.yn
-		if o.x+25 > VH-25 then
+		if o.x+15 > VH-25 then
 			direction.xn = -1
 		elseif o.x < 25 then
 			direction.xn = 1
 		end
-		if o.y+25 > VH-25 then
+		if o.y+15 > VH-25 then
 			direction.yn = -1
 		elseif o.y < 25 then
 			direction.yn = 1
