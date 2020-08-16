@@ -29,6 +29,8 @@ function love.load()
 	green_box_frame = -1
 	score = 0
 	direction = {}
+	direction.xn = 1
+	direction.yn = 1
 	direction.x = 1
 	direction.y = 1
 	direction.last_changed = 0
@@ -65,20 +67,25 @@ function love.update(dt)
 		o.x = math.random(VW-20)
 		o.y = math.random(VH-20)
 	else
-		o.x = o.x + direction.x
-		o.y = o.y + direction.y
-		if o.x > VH-25 then
-			o.x = 25
+		o.x = o.x + direction.x * direction.xn
+		o.y = o.y + direction.y * direction.yn
+		if o.x+25 > VH-25 then
+			-- o.x = 25
+			direction.xn = -1
+		elseif o.x < 25 then
+			direction.xn = 1
 		end
-		if o.y > VH-25 then
-			o.y = 25
+		if o.y+25 > VH-25 then
+			direction.yn = -1
+		elseif o.y < 25 then
+			direction.yn = 1
 		end
 		if direction.last_changed < frames-60 then
 			which = math.random(0, 1)
 			if which == 1 then
-				direction.x = math.random(-2, 2)
+				direction.x = math.random(2)
 			else
-				direction.y = math.random(-2, 2)
+				direction.y = math.random(2)
 			end
 			direction.last_changed = frames
 		end
@@ -87,6 +94,12 @@ end
 
 function love.draw()
 	push:start()
+
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.rectangle('fill', 0, 0, VW, VH)
+
+	love.graphics.setColor(0, 0, 0)
+	love.graphics.rectangle('fill', 25, 25, VW-50, VH-50)
 
 	if green_box_frame ~= -1 and green_box_frame > frames-120 then
 		love.graphics.setColor(0, 128, 0)
