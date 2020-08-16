@@ -64,8 +64,13 @@ function love.update(dt)
 	elseif tooClose and frames == next_update then
 		tooClose = false
 		next_update = false
-		o.x = math.random(VW-20)
-		o.y = math.random(VH-20)
+		which = math.random(0, 1)
+		if which == 1 then
+			direction.x = math.random(4, 8)
+		else
+			direction.y = math.random(4, 8)
+		end
+		direction.last_changed = frames
 	else
 		o.x = o.x + direction.x * direction.xn
 		o.y = o.y + direction.y * direction.yn
