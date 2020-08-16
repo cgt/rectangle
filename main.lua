@@ -79,28 +79,26 @@ function love.update(dt)
 			direction.y = direction.y + 0.1
 		end
 		direction.last_changed = frames
-	else
-		o.x = o.x + direction.x * direction.xn
-		o.y = o.y + direction.y * direction.yn
-		if o.x+o.w > VH-frame_size then
-			direction.xn = -1
-		elseif o.x < frame_size then
-			direction.xn = 1
+	elseif direction.last_changed < frames-60 then
+		which = math.random(0, 1000)
+		if which == 1 then
+			direction.x = math.random(2)
+		else
+			direction.y = math.random(2)
 		end
-		if o.y+o.h > VH-frame_size then
-			direction.yn = -1
-		elseif o.y < frame_size then
-			direction.yn = 1
-		end
-		if direction.last_changed < frames-60 then
-			which = math.random(0, 1000)
-			if which == 1 then
-				direction.x = math.random(2)
-			else
-				direction.y = math.random(2)
-			end
-			direction.last_changed = frames
-		end
+		direction.last_changed = frames
+	end
+	o.x = o.x + direction.x * direction.xn
+	o.y = o.y + direction.y * direction.yn
+	if o.x+o.w > VH-frame_size then
+		direction.xn = -1
+	elseif o.x < frame_size then
+		direction.xn = 1
+	end
+	if o.y+o.h > VH-frame_size then
+		direction.yn = -1
+	elseif o.y < frame_size then
+		direction.yn = 1
 	end
 end
 
